@@ -1,4 +1,4 @@
-Este repositório contém alguns exemplos dos novos recursos introduzido pelo Java 8, como:
+Este repositório contém alguns exemplos dos novos recursos introduzidos pelo <b>Java 8</b>, como:
 
 * Default Methods (falta implementar)
 * Method References (falta implementar)
@@ -6,4 +6,4 @@ Este repositório contém alguns exemplos dos novos recursos introduzido pelo Ja
 * Streaming API (falta implementar)
 * Collectors (falta implementar)
 
-Documentação: https://docs.oracle.com/javase/8/docs/api/
+Documentação oficial: https://docs.oracle.com/javase/8/docs/api/
