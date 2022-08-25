@@ -4,17 +4,21 @@ interface Taxi {
     void reserva();
 }
 
-class TaxiImpl implements Taxi {
-    @Override
-    public void reserva() {
-        System.out.println("Taxi reservado");
-    }
-}
-
+/**
+ * Implementando classe anonima
+ */
 public class Main {
 
     public static void main(String[] args) {
-        TaxiImpl taxi = new TaxiImpl();
+        Taxi taxi = new Taxi() {
+            @Override
+            public void reserva() {
+                System.out.println("Taxi reservado");
+            }
+        };
         taxi.reserva();
     }
 }
+
+
+
