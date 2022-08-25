@@ -2,14 +2,14 @@ package br.com.codandosimples;
 
 @FunctionalInterface
 interface Taxi {
-        void reserva(String origem);
-        }
+    void reserva(String origem, String destino);
+}
 
 public class Main {
     public static void main(String[] args) {
-        Taxi taxi = (origem) -> {
-            System.out.println("Taxi reservado. Origem: " + origem);
+        Taxi taxi = (origem, destino) -> {
+            System.out.println("Taxi reservado. Origem: " + origem + " => Destino: " + destino);
         };
-        taxi.reserva("Ribeirao Perto");
+        taxi.reserva("Ribeirão Perto", "Brasília");
     }
 }
