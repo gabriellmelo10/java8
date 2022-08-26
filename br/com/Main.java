@@ -4,15 +4,18 @@ interface Sayable{
     void say();
 }
 public class Main {
-
+    public void saySomething(){
+        System.out.println("Hello, this is non-static method.");
+    }
     public static void main(String[] args) {
-        // Referring static method
-        Sayable sayable = Main::saySomething;
+        Main methodReference = new Main(); // Creating object
+        // Referring non-static method using reference
+        Sayable sayable = methodReference::saySomething;
         // Calling interface method
         sayable.say();
-    }
-
-    public static void saySomething(){
-        System.out.println("Hello, this is static method.");
+        // Referring non-static method using anonymous object
+        Sayable sayable2 = new Main()::saySomething; // You can use anonymous object also
+        // Calling interface method
+        sayable2.say();
     }
 }
