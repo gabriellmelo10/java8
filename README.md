@@ -6,8 +6,8 @@ Este repositório contém alguns exemplos dos novos recursos introduzidos pelo <
   * Reference to an Instance Method
   * Reference to a Constructor
 * Lambdas
-* Streaming API (falta implementar)
-* Collectors (falta implementar)
+* Streaming API
+* Collectors
 * Optional
 
 Documentação oficial: https://docs.oracle.com/javase/8/docs/api/
