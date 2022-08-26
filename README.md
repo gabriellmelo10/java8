@@ -8,5 +8,6 @@ Este repositório contém alguns exemplos dos novos recursos introduzidos pelo <
 * Lambdas
 * Streaming API (falta implementar)
 * Collectors (falta implementar)
+* Optional
 
 Documentação oficial: https://docs.oracle.com/javase/8/docs/api/
