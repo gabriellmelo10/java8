@@ -1,17 +1,18 @@
 package br.com.codandosimples;
 
-@FunctionalInterface
-interface Taxi {
-    double reserva(String origem, String destino);
+interface Sayable{
+    void say();
 }
-
 public class Main {
+
     public static void main(String[] args) {
-        Taxi taxi = (origem, destino) -> {
-            System.out.println("Taxi reservado. Origem: " + origem + " => Destino: " + destino);
-            return 80.60;
-        };
-        double valorReserva = taxi.reserva("Ribeirão Perto", "Brasília");
-        System.out.println("Valor da reserva: " + valorReserva);
+        // Referring static method
+        Sayable sayable = Main::saySomething;
+        // Calling interface method
+        sayable.say();
+    }
+
+    public static void saySomething(){
+        System.out.println("Hello, this is static method.");
     }
 }
