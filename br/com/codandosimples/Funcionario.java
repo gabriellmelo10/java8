@@ -1,17 +1,21 @@
 package br.com.codandosimples;
 
+import java.util.List;
+
 public class Funcionario {
     private String nome;
     private Integer idade;
     private double salario;
+    private List<String> hobbies;
 
     public Funcionario() {
     }
 
-    public Funcionario(String nome, Integer idade, double salario) {
+    public Funcionario(String nome, Integer idade, double salario, List<String> hobbies) {
         this.nome = nome;
         this.idade = idade;
         this.salario = salario;
+        this.hobbies = hobbies;
     }
 
     public String getNome() {
@@ -38,12 +42,17 @@ public class Funcionario {
         this.salario = salario;
     }
 
+    public List<String> getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(List<String> hobbies) {
+        this.hobbies = hobbies;
+    }
+
     @Override
     public String toString() {
-        return "Funcionario{" +
-                "nome='" + nome + '\'' +
-                ", idade=" + idade +
-                ", salario=" + salario +
-                '}';
+        return
+                "nome='" + nome;
     }
 }

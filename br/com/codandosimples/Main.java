@@ -1,162 +1,97 @@
 package br.com.codandosimples;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.*;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
         List<Funcionario> funcionarios = Arrays.asList(
-                new Funcionario("José", 44, 4500),
-                new Funcionario("Luana", 23, 2800),
-                new Funcionario("Paulo", 17, 1300),
-                new Funcionario("Guilherme", 28, 5300),
-                new Funcionario("Karina", 32, 4500));
+                new Funcionario("José", 32, 4500, Arrays.asList("música", "futebol")),
+                new Funcionario("Luana", 23, 2800, Arrays.asList("teatro", "academia")),
+                new Funcionario("Paulo", 19, 1700, Arrays.asList("vídeo game", "literatura")),
+                new Funcionario("Guilherme", 28, 5300, Arrays.asList("música", "pescar")),
+                new Funcionario("Karina", 32, 4800, Arrays.asList("surfar", "futebol")),
+                new Funcionario("Ana", 19, 1300, Arrays.asList("literatura", "arte")));
 
         /**
-         * Listar todos os funcionarios com idade acima de 25 anos (filter)
+         * Soma de todos os salários (reduce)
          */
-        List<Funcionario> filtro = funcionarios.stream()
-                .filter(funcionario -> funcionario.getIdade() > 25)
-                .collect(Collectors.toList());
-        System.out.println(filtro);
-        System.out.println();
-        System.out.println("-----------------------------------------");
-        System.out.println();
+        double valorInicial = 0.0;
+        BinaryOperator<Double> acumulador = (x, y) -> {
+            System.out.println(x + " => " + y);
+            return x + y;
+        };
 
-        /**
-         * Listar os nomes dos func. (map)
-         */
-        funcionarios.stream()
-                .map(Funcionario::getNome)
-                .forEach(System.out::println);
-
-        System.out.println();
-
-        List<String> nome = funcionarios.stream()
-                .map(Funcionario::getNome)
-                .collect(Collectors.toList());
-        System.out.println(nome);
-
-        System.out.println();
-        System.out.println("-----------------------------------------");
-        System.out.println();
-
-        /**
-         * Listar todos os func. salários (map)
-         */
-        List<Double> salario = funcionarios.stream()
+        double somaSalarioal = funcionarios.stream()
                 .map(Funcionario::getSalario)
-                .collect(Collectors.toList());
-        System.out.println(salario);
+                .reduce(valorInicial, acumulador);
+        System.out.println(somaSalarioal);
 
         System.out.println();
         System.out.println("-----------------------------------------");
         System.out.println();
 
         /**
-         * Listar todos os func. sem repeti-los (distinct ou toSet)
+         * Listar todos os hobbies dos func.
          */
-        List<Double> salarioDistinc = funcionarios.stream()
-                .map(Funcionario::getSalario)
+        List<String> hobbies = funcionarios.stream()
+                .flatMap(funcionario -> funcionario.getHobbies().stream())
+                .collect(Collectors.toList());
+        System.out.println(hobbies);
+
+        System.out.println();
+
+        //Distinct
+        List<String> hobbies_I = funcionarios.stream()
+                .flatMap(funcionario -> funcionario.getHobbies().stream())
                 .distinct()
                 .collect(Collectors.toList());
-        System.out.println(salarioDistinc);
+        System.out.println(hobbies_I);
 
         System.out.println();
 
-        Set<Double> salarioSet = funcionarios.stream()
-                .map(Funcionario::getSalario)
+        //Set
+        Set<String> hobbies_II = funcionarios.stream()
+                .flatMap(funcionario -> funcionario.getHobbies().stream())
                 .collect(Collectors.toSet());
-        System.out.println(salarioSet);
+        System.out.println(hobbies_II);
 
         System.out.println();
         System.out.println("-----------------------------------------");
         System.out.println();
 
         /**
-         * Retornar qualquer func. acima de 18 anos (findAny)
+         * Mapear func. por hobbies (chave x valor)
          */
         funcionarios.stream()
-                .filter(funcionario -> funcionario.getIdade() > 18)
-                .findAny()
-                .ifPresent(System.out::println);
-
-        System.out.println();
-        System.out.println("-----------------------------------------");
-        System.out.println();
-
-
-        /**
-         * Qtd de func. com salário acima de 3000 (count)
-         */
-        long qtd = funcionarios.stream()
-                .filter(funcionario -> funcionario.getSalario() > 3000)
-                .count();
-        System.out.println(qtd);
-
-        System.out.println();
-        System.out.println("-----------------------------------------");
-        System.out.println();
-        /**
-         * Média de todos os salários (mapToDouble e average)
-         */
-        double mediaSalarial = funcionarios.stream()
-                .mapToDouble(Funcionario::getSalario)
-                .average()
-                .orElse(0);
-        System.out.println(mediaSalarial);
+                .collect(Collectors.toMap(Funcionario::getNome, Funcionario::getHobbies))
+                .forEach((k, v) -> System.out.println(k + " => " + v));
 
         System.out.println();
         System.out.println("-----------------------------------------");
         System.out.println();
 
         /**
-         * Soma de todos os salários (mapToDouble e sum)
+         * Agrupar func. por idade
          */
-        double somaSalarial = funcionarios.stream()
-                .mapToDouble(Funcionario::getSalario)
-                .sum();
-        System.out.println(somaSalarial);
+        Map<Integer, List<Funcionario>> collect = funcionarios.stream()
+                .collect(Collectors.groupingBy(Funcionario::getIdade));
+        System.out.println(collect);
 
         System.out.println();
         System.out.println("-----------------------------------------");
         System.out.println();
 
         /**
-         * O maior salário (mapToDouble e max)
+         * Agrupar func. por saláiro
          */
-        double maiorSalario = funcionarios.stream()
-                .mapToDouble(Funcionario::getSalario)
-                .max()
-                .orElse(0);
-        System.out.println(maiorSalario);
-
-        System.out.println();
-
-        funcionarios.stream()
-                        .max(Comparator.comparing(Funcionario::getSalario))
-                        .ifPresent(System.out::println);
-
-        System.out.println();
-        System.out.println("-----------------------------------------");
-        System.out.println();
-
-        /**
-         * O menos salário (mapToDouble e min)
-         */
-        double menorSalario = funcionarios.stream()
-                .mapToDouble(Funcionario::getSalario)
-                .min()
-                .orElse(0);
-        System.out.println(menorSalario);
-
-        System.out.println();
-
-        funcionarios.stream()
-                .min(Comparator.comparing(Funcionario::getSalario))
-                .ifPresent(System.out::println);
+        Map<Integer, List<Double>> collect1 = funcionarios.stream()
+                .collect(
+                        Collectors.groupingBy(Funcionario::getIdade,
+                                Collectors.mapping(Funcionario::getSalario, Collectors.toList())));
+        System.out.println(collect1);
 
     }
+
 }
