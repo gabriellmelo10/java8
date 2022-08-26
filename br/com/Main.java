@@ -1,21 +1,16 @@
 package br.com.codandosimples;
 
-interface Sayable{
-    void say();
+interface Messageable{
+    Message getMessage(String msg);
+}
+class Message{
+    Message(String msg){
+        System.out.print(msg);
+    }
 }
 public class Main {
-    public void saySomething(){
-        System.out.println("Hello, this is non-static method.");
-    }
     public static void main(String[] args) {
-        Main methodReference = new Main(); // Creating object
-        // Referring non-static method using reference
-        Sayable sayable = methodReference::saySomething;
-        // Calling interface method
-        sayable.say();
-        // Referring non-static method using anonymous object
-        Sayable sayable2 = new Main()::saySomething; // You can use anonymous object also
-        // Calling interface method
-        sayable2.say();
+        Messageable hello = Message::new;
+        hello.getMessage("Hello");
     }
 }
