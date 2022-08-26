@@ -1,7 +1,10 @@
 Este repositório contém alguns exemplos dos novos recursos introduzidos pelo <b>Java 8</b>, como:
 
 * Default Methods 
-* Method References (falta implementar)
+* Method References
+  * Reference to a Static Method
+  * Reference to an Instance Method
+  * Reference to a Constructor
 * Lambdas
 * Streaming API (falta implementar)
 * Collectors (falta implementar)
