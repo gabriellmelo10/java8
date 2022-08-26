@@ -1,7 +1,9 @@
 package br.com.codandosimples;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,9 +13,12 @@ public class Main {
                 new Contato("Luiz", "Campinas"),
                 new Contato("Carla", "Bauru"));
 
-        contatos.stream()
+        List<Contato> filtro = contatos.stream()
                 .filter(contato -> contato.getCidade().equalsIgnoreCase("Campinas"))
-                .forEach(System.out::println);
+                //.collect(Collectors.toList());
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        System.out.println(filtro);
 
     }
 }
