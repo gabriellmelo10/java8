@@ -11,7 +11,7 @@ public class Main {
             System.out.println("Taxi reservado. Origem: " + origem + " => Destino: " + destino);
             return 80.60;
         };
-        double valorReserva = taxi.reserva("Ribeirão Perto", "Brasília");
+        double valorReserva = taxi.reserva("Ribeirão Preto", "Brasília");
         System.out.println("Valor da reserva: " + valorReserva);
     }
 }
