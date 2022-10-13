@@ -14,7 +14,7 @@ public class Main {
 
         //Optional.of - throws NullPointerException if passed parameter is null
         Optional<Integer> b = Optional.of(value2);
-        System.out.println(main.sum(a,b));
+        System.out.println("Total da soma: " + main.sum(a,b));
     }
 
     public Integer sum(Optional<Integer> a, Optional<Integer> b) {
