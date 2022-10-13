@@ -10,6 +10,6 @@ public class Main {
         Taxi taxi = (origem) -> {
             System.out.println("Taxi reservado. Origem: " + origem);
         };
-        taxi.reserva("Ribeirao Perto");
+        taxi.reserva("Ribeirão Preto");
     }
 }
